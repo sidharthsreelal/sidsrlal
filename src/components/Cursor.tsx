@@ -3,24 +3,33 @@ import { motion, useSpring, useMotionValue } from 'framer-motion';
 import clsx from 'clsx';
 
 export const Cursor = () => {
-  
-  // Instant dot position
   const dotX = useMotionValue(-100);
   const dotY = useMotionValue(-100);
-  
-  // Trailing ring position (spring)
+
   const ringX = useSpring(dotX, { stiffness: 150, damping: 20, mass: 0.5 });
   const ringY = useSpring(dotY, { stiffness: 150, damping: 20, mass: 0.5 });
-  
+
   const [isHovering, setIsHovering] = useState(false);
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   useEffect(() => {
+    // Detect if the device has a fine pointer (mouse). If not, bail out.
+    const mq = window.matchMedia('(hover: hover) and (pointer: fine)');
+    setIsTouchDevice(!mq.matches);
+
+    const handleChange = (e: MediaQueryListEvent) => setIsTouchDevice(!e.matches);
+    mq.addEventListener('change', handleChange);
+    return () => mq.removeEventListener('change', handleChange);
+  }, []);
+
+  useEffect(() => {
+    if (isTouchDevice) return;
+
     const handleMouseMove = (e: MouseEvent) => {
       dotX.set(e.clientX);
       dotY.set(e.clientY);
 
-      // Check for hover
       const target = e.target as HTMLElement;
       if (
         target.tagName.toLowerCase() === 'a' ||
@@ -34,7 +43,6 @@ export const Cursor = () => {
         setIsHovering(false);
       }
 
-      // Check theme
       const darkSection = target.closest('[data-theme="dark"]');
       if (darkSection) {
         setTheme('dark');
@@ -47,14 +55,14 @@ export const Cursor = () => {
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
     };
-  }, [dotX, dotY]);
+  }, [dotX, dotY, isTouchDevice]);
 
-  // Determine colors based on theme
+  // Render nothing on touch devices
+  if (isTouchDevice) return null;
+
   const dotColor = theme === 'dark' ? 'bg-offwhite' : 'bg-olive-dark';
   const ringColor = theme === 'dark' ? 'border-offwhite' : 'border-olive-dark';
-  
-  // We use Framer Motion for the ring to animate position, but we can also use Framer Motion to animate the scale and opacity.
-  
+
   return (
     <>
       {/* Trailing Ring */}
@@ -70,7 +78,7 @@ export const Cursor = () => {
           translateY: '-50%',
         }}
         animate={{
-          width: isHovering ? 64 : 32, // w-16 or w-8
+          width: isHovering ? 64 : 32,
           height: isHovering ? 64 : 32,
           opacity: isHovering ? 0.2 : 0.5,
           backgroundColor: isHovering ? (theme === 'dark' ? '#e6daaa' : '#3e4d19') : 'transparent'

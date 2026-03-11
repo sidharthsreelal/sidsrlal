@@ -6,7 +6,6 @@
 
 :root {
   font-family: 'Inter', sans-serif;
-  cursor: none;
 }
 
 @supports (font-variation-settings: normal) {
@@ -17,17 +16,20 @@
 
 body {
   @apply bg-offwhite text-text font-sans antialiased;
-  cursor: none;
 }
 
-/* Ensure links and buttons don't show the default pointer since we have a custom cursor */
-a,
-button,
-[role="button"],
-input,
-select,
-textarea {
-  cursor: none;
+/* Only hide the system cursor on devices that have a fine pointer (mouse) */
+@media (hover: hover) and (pointer: fine) {
+  :root,
+  body,
+  a,
+  button,
+  [role="button"],
+  input,
+  select,
+  textarea {
+    cursor: none;
+  }
 }
 
 /* Selection color */
@@ -66,18 +68,22 @@ textarea {
 
 .hide-scrollbar {
   -ms-overflow-style: none;
-  /* IE and Edge */
   scrollbar-width: none;
-  /* Firefox */
 }
 
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
-  /* Chrome, Safari and Opera */
 }
 
 .bg-grid-olive {
   background-image: linear-gradient(to right, rgba(62, 77, 25, 0.05) 2px, transparent 2px),
     linear-gradient(to bottom, rgba(62, 77, 25, 0.05) 2px, transparent 2px);
   background-size: 20px 20px;
+}
+
+/* Static grid fallback for the hero on all devices */
+.bg-grid-hero {
+  background-image: linear-gradient(to right, rgba(50, 62, 20, 0.08) 2px, transparent 2px),
+    linear-gradient(to bottom, rgba(50, 62, 20, 0.08) 2px, transparent 2px);
+  background-size: 40px 40px;
 }

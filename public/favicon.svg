@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -15 120 120">
+  <!-- Soft Off-white Background -->
+  <rect x="-10" y="-15" width="120" height="120" fill="#e6daaa" rx="20"/>
+  
+  <!-- Stacked Triangles for the Valknut -->
+  <!-- Triangle 1 (Bottom Right) -->
+  <path d="M66 22L35 76H97Z" fill="none" stroke="#e6daaa" stroke-width="18" stroke-linejoin="miter"/>
+  <path d="M66 22L35 76H97Z" fill="none" stroke="#3e4d19" stroke-width="10" stroke-linejoin="miter"/>
+  
+  <!-- Triangle 2 (Top) -->
+  <path d="M50 -4L19 49H81Z" fill="none" stroke="#e6daaa" stroke-width="18" stroke-linejoin="miter"/>
+  <path d="M50 -4L19 49H81Z" fill="none" stroke="#3e4d19" stroke-width="10" stroke-linejoin="miter"/>
+  
+  <!-- Triangle 3 (Bottom Left) -->
+  <path d="M34 22L3 76H65Z" fill="none" stroke="#e6daaa" stroke-width="18" stroke-linejoin="miter"/>
+  <path d="M34 22L3 76H65Z" fill="none" stroke="#3e4d19" stroke-width="10" stroke-linejoin="miter"/>
+</svg>

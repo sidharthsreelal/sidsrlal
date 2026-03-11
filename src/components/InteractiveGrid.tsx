@@ -1,4 +1,4 @@
-import { useRef, useEffect, useCallback } from 'react';
+import { useRef, useEffect, useCallback, useState } from 'react';
 
 interface InteractiveGridProps {
   className?: string;
@@ -8,12 +8,21 @@ export const InteractiveGrid = ({ className }: InteractiveGridProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const mouseRef = useRef({ x: -200, y: -200, active: false });
   const animFrameRef = useRef<number>(0);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   const GRID_SPACING = 40;
   const LINE_WIDTH = 2;
   const LINE_COLOR = 'rgba(50, 62, 20, 0.08)';
   const MAGNIFY_RADIUS = 120;
   const MAGNIFY_STRENGTH = 1.8;
+
+  useEffect(() => {
+    const mq = window.matchMedia('(hover: hover) and (pointer: fine)');
+    setIsTouchDevice(!mq.matches);
+    const handleChange = (e: MediaQueryListEvent) => setIsTouchDevice(!e.matches);
+    mq.addEventListener('change', handleChange);
+    return () => mq.removeEventListener('change', handleChange);
+  }, []);
 
   const draw = useCallback(() => {
     const canvas = canvasRef.current;
@@ -28,7 +37,6 @@ export const InteractiveGrid = ({ className }: InteractiveGridProps) => {
     ctx.lineWidth = LINE_WIDTH;
     ctx.strokeStyle = LINE_COLOR;
 
-    // Draw vertical lines with distortion
     for (let x = 0; x <= width; x += GRID_SPACING) {
       ctx.beginPath();
       for (let y = 0; y <= height; y += 2) {
@@ -58,7 +66,6 @@ export const InteractiveGrid = ({ className }: InteractiveGridProps) => {
       ctx.stroke();
     }
 
-    // Draw horizontal lines with distortion
     for (let y = 0; y <= height; y += GRID_SPACING) {
       ctx.beginPath();
       for (let x = 0; x <= width; x += 2) {
@@ -92,6 +99,8 @@ export const InteractiveGrid = ({ className }: InteractiveGridProps) => {
   }, []);
 
   useEffect(() => {
+    if (isTouchDevice) return;
+
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -106,13 +115,11 @@ export const InteractiveGrid = ({ className }: InteractiveGridProps) => {
     window.addEventListener('resize', resizeCanvas);
     animFrameRef.current = requestAnimationFrame(draw);
 
-    // Listen on window so we don't block pointer events on content above
     const handleMouseMove = (e: MouseEvent) => {
       const rect = canvas.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
 
-      // Check if cursor is within the canvas bounds
       if (x >= 0 && x <= rect.width && y >= 0 && y <= rect.height) {
         mouseRef.current = { x, y, active: true };
       } else {
@@ -127,7 +134,24 @@ export const InteractiveGrid = ({ className }: InteractiveGridProps) => {
       window.removeEventListener('mousemove', handleMouseMove);
       cancelAnimationFrame(animFrameRef.current);
     };
-  }, [draw]);
+  }, [draw, isTouchDevice]);
+
+  // On touch devices, render a simple static CSS grid instead of the canvas
+  if (isTouchDevice) {
+    return (
+      <div
+        className={`${className} bg-grid-hero`}
+        style={{
+          position: 'absolute',
+          inset: 0,
+          width: '100%',
+          height: '100%',
+          pointerEvents: 'none',
+          zIndex: 0,
+        }}
+      />
+    );
+  }
 
   return (
     <canvas
