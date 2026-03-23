@@ -118,7 +118,7 @@ function App() {
             <h2 className="font-serif text-3xl sm:text-4xl md:text-6xl mb-6 md:mb-8 italic">About</h2>
             <div className="space-y-4 md:space-y-6 text-base sm:text-lg md:text-xl font-light text-offwhite/80 leading-relaxed">
               <p>
-                I make software — CLIs, desktop apps, physics engines, the occasional website. Mostly whatever sounds interesting enough to keep me up past midnight.
+                I make software most of the time, hardware if I wanna stress myself out. CLIs, desktop apps, physics engines and the occasional website. Mostly whatever sounds interesting enough to keep me up past midnight.
               </p>
               <p>
                 I like things minimal. Clean code, decent architecture, and a healthy dose of pragmatism. I'm not here to reinvent the wheel, just to make sure it rolls smoothly.

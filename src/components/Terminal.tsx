@@ -5,18 +5,30 @@ import clsx from 'clsx';
 const codeSnippet = `use std::net::TcpListener;
 use std::io::Read;
 
+// "always code as if the person maintaining your code
+//  is a violent psychopath who knows where you live"
+//                                        — John Woods
+
 fn main() -> std::io::Result<()> {
-    // init local server
+    // TODO: fix before pushing to prod
+    // (written: 2019)
+
     let listener = TcpListener::bind("127.0.0.1:8080")?;
     println!("listening on port 8080...");
-    
+    println!("(works on my machine)");
+
     for stream in listener.incoming() {
         let mut s = stream?;
         let mut buf = [0; 512];
         s.read(&mut buf)?;
-        // handle req
+        // "it works, but i don't know why"
+        //                     — every developer, always
     }
-    Ok(())
+
+    // "first, solve the problem. then, write the code."
+    //                                      — John Johnson
+    //  (we skipped step one)
+    Ok(()) // surprisingly
 }`;
 
 export const Terminal = ({ className }: { className?: string }) => {
@@ -38,7 +50,7 @@ export const Terminal = ({ className }: { className?: string }) => {
 
     if (currentIndex <= codeSnippet.length) {
       // Slower typing speed: 30-70ms instead of 15-45ms
-      const randomDelay = Math.random() * 40 + 30; 
+      const randomDelay = Math.random() * 40 + 30;
       const timeout = setTimeout(() => {
         setDisplayedText(codeSnippet.slice(0, currentIndex));
         setCurrentIndex(currentIndex + 1);
@@ -56,7 +68,7 @@ export const Terminal = ({ className }: { className?: string }) => {
 
 
   return (
-    <div 
+    <div
       ref={containerRef}
       className={clsx(
         "rounded-2xl overflow-hidden shadow-2xl relative border border-offwhite/10 flex flex-col",
@@ -74,12 +86,12 @@ export const Terminal = ({ className }: { className?: string }) => {
       </div>
 
       {/* Terminal Body */}
-      <div 
+      <div
         ref={scrollRef}
         className="p-6 font-mono text-[13px] md:text-sm text-offwhite/70 leading-relaxed overflow-y-auto hide-scrollbar whitespace-pre flex-1 scroll-smooth"
       >
         <span className="text-offwhite/90">{displayedText}</span>
-        <span 
+        <span
           className="inline-block w-2 md:w-2.5 h-[1.2em] align-middle ml-1 bg-offwhite/50 animate-pulse"
           style={{ animationDuration: '0.8s' }}
         />
