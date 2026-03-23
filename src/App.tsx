@@ -19,12 +19,12 @@ const projects = [
   },
   {
     name: 'PassCLI',
-    description: 'A command-line interface for your secrets.',
+    description: 'A terminal password manager. Enter the wrong master password and it starts eating your stored passwords one character at a time. Seems like a good idea right?',
     link: 'https://github.com/sidharthsreelal/passcli',
   },
   {
     name: 'FluxSim',
-    description: 'Simulation environment for complex data flows.',
+    description: '3D rigid body physics engine, written from scratch in Python, for no good reason other than curiosity. It works. I\'m still surprised.',
     link: 'https://github.com/sidharthsreelal/fluxsim',
   },
 ];
@@ -92,7 +92,7 @@ function App() {
               sidsrlal.
             </h1>
             <p className="text-lg sm:text-xl md:text-2xl text-text/70 max-w-2xl font-light leading-relaxed mb-8 md:mb-12">
-              Software developer crafting tools for a refined, and performant digital experiences.
+              I build things. Sometimes they even work on the first try. Most of the time they don't.
             </p>
             <a
               href="https://github.com/sidharthsreelal"
@@ -118,13 +118,13 @@ function App() {
             <h2 className="font-serif text-3xl sm:text-4xl md:text-6xl mb-6 md:mb-8 italic">About</h2>
             <div className="space-y-4 md:space-y-6 text-base sm:text-lg md:text-xl font-light text-offwhite/80 leading-relaxed">
               <p>
-                I build software with a focus on minimal design, calm interactions, and sophisticated architecture.
+                I make software — CLIs, desktop apps, physics engines, the occasional website. Mostly whatever sounds interesting enough to keep me up past midnight.
               </p>
               <p>
-                My work spans across tooling, user interfaces, and technical systems, always striving for a balance between form and function.
+                I like things minimal. Clean code, decent architecture, and a healthy dose of pragmatism. I'm not here to reinvent the wheel, just to make sure it rolls smoothly.
               </p>
               <p>
-                I believe that good software should feel handcrafted with thoughtful typography, generous spacing, and an underlying sense of intention.
+                If it deploys, great. If it doesn't, it's "pre-release" and we don't talk about it.
               </p>
             </div>
           </div>
@@ -180,7 +180,7 @@ function App() {
               <div className="space-y-3 md:space-y-4">
                 <h4 className="text-lg md:text-xl font-medium text-offwhite/90">Independent Software Developer</h4>
                 <p className="text-offwhite/70 font-light text-base md:text-lg leading-relaxed group-hover:text-offwhite transition-colors duration-300">
-                  Building custom software for independent clients. My work usually involves bridging the gap between reliable backend architecture and a highly polished frontend.
+                  Building custom software for clients who have an idea and need someone to build it. It's mostly just cafes and small businesses tho.
                 </p>
               </div>
             </div>
@@ -197,7 +197,7 @@ function App() {
               <div className="space-y-3 md:space-y-4">
                 <h4 className="text-lg md:text-xl font-medium text-offwhite/90">Founder & Lead Event Organizer</h4>
                 <p className="text-offwhite/70 font-light text-base md:text-lg leading-relaxed group-hover:text-offwhite transition-colors duration-300">
-                  Built HackTVM to be India's first interschool hackathon under the Hack Club network. Partnered with a global NGO to scale and create real-world opportunities for students.
+                  Built HackTVM to be India's first interschool hackathon with 300+ participants from multiple states. Winners got to intern at top tech companies.
                 </p>
                 <div className="flex flex-wrap gap-2 mt-3 md:mt-4 opacity-70 group-hover:opacity-100 transition-opacity duration-300">
                   <span className="px-2.5 py-1 md:px-3 rounded-full border border-offwhite/20 text-xs text-offwhite/80">Event Planning</span>
