@@ -22,11 +22,11 @@ fn main() -> std::io::Result<()> {
         let mut buf = [0; 512];
         s.read(&mut buf)?;
         // "it works, but i don't know why"
-        //                     — every developer, always
+        //                   — every developer, always
     }
 
     // "first, solve the problem. then, write the code."
-    //                                      — John Johnson
+    //                                  — John Johnson
     //  (we skipped step one)
     Ok(()) // surprisingly
 }`;
