@@ -9,12 +9,12 @@ import { Github, ArrowUpRight, Mail, Menu, X } from 'lucide-react';
 const projects = [
   {
     name: 'Backlight',
-    description: 'A tool to brighten your workflow.',
+    description: 'Tells you to take a break. You will ignore it. It will ask again. One of you will eventually give in, and it won\'t be backlight.',
     link: 'https://github.com/sidharthsreelal/Backlight',
   },
   {
     name: 'Codra',
-    description: 'A conceptual code exploration library.',
+    description: 'A TUI vibe-coder hooked up to local LLMs. All the AI-assisted coding, none of the subscription fees.',
     link: 'https://github.com/sidharthsreelal/codra',
   },
   {
@@ -254,7 +254,9 @@ function App() {
             </a>
 
             <a
-              href="mailto:sidharthsreelal@gmail.com"
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=sidharthsreelal@gmail.com"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-3 border border-offwhite px-6 py-3 md:px-8 md:py-4 rounded-full font-medium text-offwhite hover:bg-offwhite/10 transition-colors duration-300 text-sm md:text-base"
             >
               <Mail className="w-4 h-4 md:w-5 md:h-5" />
